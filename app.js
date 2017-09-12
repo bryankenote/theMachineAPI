@@ -1,11 +1,11 @@
-var express = require('express');
-var app = express();
-var db = require('./db');
+const express = require('express');
+const app = express();
+const db = require('./db');
 
-var AuthController = require('./auth/AuthController');
+const AuthController = require('./auth/AuthController');
 app.use('/api/auth', AuthController);
 
-var UserController = require('./user/UserController');
+const UserController = require('./user/UserController');
 app.use('/users', UserController);
 
 module.exports = app;
