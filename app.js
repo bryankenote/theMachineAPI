@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const db = require('./model/db');
+require('./model/db');
 
 const cors = require('cors');
 app.use(cors());
@@ -10,5 +10,8 @@ app.use('/api/auth', AuthController);
 
 const UserController = require('./model/user/UserController');
 app.use('/users', UserController);
+
+const MemberController = require('./model/member/MemberController');
+app.use('/members', MemberController);
 
 module.exports = app;
