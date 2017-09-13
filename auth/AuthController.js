@@ -20,7 +20,7 @@ router.post('/register', function (req, res) {
     password: hashedPassword
   },
     function (err, user) {
-      if (err) return res.status(500).send("There was a problem registering the user.");
+      if (err) return res.status(500).send('There was a problem registering the user.');
       // create a token
       const token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
@@ -29,10 +29,10 @@ router.post('/register', function (req, res) {
     });
 });
 
-router.get('/me', VerifyToken, function(req, res, next) {
+router.get('/me', VerifyToken, function (req, res, next) {
   User.findById(req.userId, { password: 0 }, function (err, user) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!user) return res.status(404).send("No user found.");
+    if (err) return res.status(500).send('There was a problem finding the user.');
+    if (!user) return res.status(404).send('No user found.');
 
     res.status(200).send(user);
   });
@@ -51,7 +51,7 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
   res.status(200).send({ auth: false, token: null });
 });
 
