@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');  
+var mongoose = require('mongoose');
 
-var fineSchema = new mongoose.Schema({  
+var fineSchema = new mongoose.Schema({
   bank: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Bank',
@@ -30,17 +30,12 @@ var fineSchema = new mongoose.Schema({
     required: true
   }
 });
+mongoose.model('Fine', fineSchema);
 
-var Fine;
+module.exports = mongoose.model('Fine');
 
-if (mongoose.models.fine)
-    Fine = mongoose.model('Fine');
-else
-    Fine = mongoose.model('Fine', fineSchema);  
-
-module.exports = Fine;
-
-module.exports.getAll = function(callback) {  
+/*
+module.exports.getAll = function(callback) {
   Fine.find({}, function(err, fines) {
     if (err)
       callback(err, null);
@@ -49,7 +44,7 @@ module.exports.getAll = function(callback) {
   });
 };
 
-module.exports.getById = function(id, callback) {  
+module.exports.getById = function(id, callback) {
   Fine.findOne({
     '_id': id
   }, function(err, fines) {
@@ -60,7 +55,7 @@ module.exports.getById = function(id, callback) {
   });
 };
 
-module.exports.getForMember = function(id, callback) {  
+module.exports.getForMember = function(id, callback) {
   Fine.findOne({
     'member': id
   }, function(err, fines) {
@@ -71,7 +66,7 @@ module.exports.getForMember = function(id, callback) {
   });
 };
 
-module.exports.createFine = function(newFine, callback) {  
+module.exports.createFine = function(newFine, callback) {
   newFine.save(callback);
 };
 
@@ -84,3 +79,4 @@ module.exports.deleteFine = function(fine, callback) {
 module.exports.updateFine = function(updatedFine, callback) {
   Fine.findOneAndUpdate({ _id: updatedFine._id}, updatedFine, { upsert: true }, callback);
 };
+*/

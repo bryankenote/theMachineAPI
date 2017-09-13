@@ -44,11 +44,11 @@ var jobSchema = new mongoose.Schema({
     default: false
   }
 });
+mongoose.model('Job', jobSchema);
 
-Job = mongoose.model('Job', jobSchema);
+module.exports = mongoose.model('Job');
 
-module.exports = Job;
-
+/*
 module.exports.getAll = function(callback) {
   Job.find({}, function(err, jobs) {
     if (err)
@@ -93,3 +93,4 @@ module.exports.deleteJob = function(job, callback) {
 module.exports.updateJob = function(updatedJob, callback) {
   Job.findOneAndUpdate({ _id: updatedJob._id}, updatedJob, { upsert: true }, callback);
 };
+*/

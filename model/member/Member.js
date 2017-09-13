@@ -13,7 +13,8 @@ var memberSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true
-  },
+  }
+  /* ,
   banksResolved: {
     type: Number,
     default: 0,
@@ -34,6 +35,7 @@ var memberSchema = new mongoose.Schema({
     default: 0,
     min: 0
   }
+  */
 });
 mongoose.model('Member', memberSchema);
 

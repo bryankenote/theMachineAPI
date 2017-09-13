@@ -10,10 +10,22 @@ const bankSchema = new mongoose.Schema({
     ref: 'Member',
     required: true
   },
+  job: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Job',
+    required: false
+  },
+  fine: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Fine',
+    required: false
+  },
+  /*
   memberName: {
     type: String,
     required: true
   },
+  */
   description: {
     type: String,
     required: true
@@ -37,22 +49,18 @@ const bankSchema = new mongoose.Schema({
   },
   severity: {
     type: Number
-  },
+  }
+  /* ,
   imagePath: {
     type: String
   }
+  */
 });
+mongoose.model('Bank', bankSchema);
 
-var Bank;
+module.exports = mongoose.model('Bank');
 
-if (mongoose.models.Bank) {
-  Bank = mongoose.model('Bank');
-} else {
-  Bank = mongoose.model('Bank', bankSchema);
-}
-
-module.exports = Bank;
-
+/*
 module.exports.getAll = function (callback) {
   Bank.find({}, function (err, banks) {
     if (err) {
@@ -100,3 +108,4 @@ module.exports.deleteBank = function (bank, callback) {
 module.exports.updateBank = function (updatedBank, callback) {
   Bank.findOneAndUpdate({ _id: updatedBank._id }, updatedBank, { upsert: true }, callback);
 };
+*/
