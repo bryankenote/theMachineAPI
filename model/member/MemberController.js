@@ -39,57 +39,20 @@ router.post('/create', VerifyToken, function (req, res, next) {
   });
 });
 
-/*
-router.post('/save', ensureAuthenticated, function (req, res, next) {
-  var clientMembers = req.body.members;
-
-  clientMembers.forEach(function (clientMember) {
-    if (clientMember.className.indexOf('create') >= 0) {
-      var newMember = new Member({
-        fName: clientMember.fName,
-        lName: clientMember.lName,
-        email: clientMember.email
-      });
-      Member.createMember(newMember, function (err) {
-        if (err)
-          res.status(400).end();
-      });
-    } else if (clientMember.className.indexOf('update') >= 0) {
-      var newMember = {
-        _id: clientMember._id,
-        fName: clientMember.fName,
-        lName: clientMember.lName,
-        email: clientMember.email,
-        totalBanks: clientMember.totalBanks,
-        banksResolved: clientMember.banksResolved,
-        totalFines: clientMember.totalFines,
-        finesPaid: clientMember.finesPaid
-      };
-      Member.updateMember(newMember, function (err) {
-        if (err)
-          res.status(400).end();
-      });
-    } else if (clientMember.className.indexOf('delete') >= 0) {
-      Member.deleteMember(clientMember, function (err) {
-        if (err)
-          res.status(400).end();
-      });
-    }
-  });
-  res.status(200).end();
-});
-
-router.post('/remove', ensureAuthenticated, function (req, res, next) {
-  Member.find({
-    email: req.body.email
-  }).remove(function (err) {
-    if (err) {
-      res.status(400).end();
-    } else {
-      res.status(200).end();
-    }
+// UPDATES A SINGLE USER
+router.put('/:id', VerifyToken, function (req, res) {
+  Member.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, user) {
+    if (err) return res.status(500).send('There was a problem updating the Member.');
+    else res.status(200).send(user);
   });
 });
-*/
+
+// DELETES A MEMBER
+router.delete('/remove', VerifyToken, function (req, res, next) {
+  Member.findByIdAndRemove(req.body.id, function (err, member) {
+    if (err) res.status(500).send('There was a problem deleting the member');
+    else res.status(200).send(member);
+  });
+});
 
 module.exports = router;
