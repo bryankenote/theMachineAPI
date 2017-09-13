@@ -8,7 +8,7 @@ var VerifyToken = require('./VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-var User = require('../user/User');
+var User = require('../model/user/User');
 
 router.post('/register', function (req, res) {
 
