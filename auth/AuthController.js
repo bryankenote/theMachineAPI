@@ -39,7 +39,7 @@ router.get('/me', VerifyToken, function (req, res, next) {
 });
 
 router.post('/login', function (req, res) {
-  User.findOne({ email: req.body.email }, function (err, user) {
+  User.findOne({ username: req.body.username }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send('No user found.');
     const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
