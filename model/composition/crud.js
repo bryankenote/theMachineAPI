@@ -34,8 +34,9 @@ exports.delete = (state) => {
 
 // UPDATES A SINGLE DOCUMENT
 exports.put = (state) => {
-  state.model.findByIdAndUpdate(state.req.params.id, state.req.body, { new: true }, function (err, doc) {
-    if (err) return state.res.status(500).send('There was a problem updating the document.');
-    state.res.status(200).send(doc);
-  });
+  state.model.findByIdAndUpdate(state.req.params.id, { $set: state.req.body }, { new: true },
+    function (err, doc) {
+      if (err) return state.res.status(500).send('There was a problem updating the document.');
+      state.res.status(200).send(doc);
+    });
 };

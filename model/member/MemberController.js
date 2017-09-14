@@ -7,6 +7,15 @@ const VerifyToken = require('../../auth/VerifyToken');
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
+// ADD TO FINES PAID
+router.put('/fines', VerifyToken, function (req, res, next) {
+  Member.findByIdAndUpdate(req.body.id, { $inc: { finesPaid: Number(req.body.finesPaid) } },
+    function (err, member) {
+      if (err) res.status(500).send('There was a problem');
+      else res.status(200).send(member);
+    });
+});
+
 // GET ALL MEMBERS
 router.get('/', VerifyToken, function (req, res, next) {
   crud.getAll({

@@ -7,6 +7,34 @@ const VerifyToken = require('../../auth/VerifyToken');
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
+router.put('/postpone', VerifyToken, function (req, res, next) {
+  Job.findByIdAndUpdate(req.body.id,
+    {
+      $set:
+      {
+        dateDue: new Date(req.body.dueDate)
+      }
+    }, function (err, job) {
+      if (err) return res.status(500).send('There was a problem updating the document.');
+      res.status(200).send(job);
+    });
+});
+
+router.put('/complete', VerifyToken, function (req, res, next) {
+  Job.findByIdAndUpdate(req.body.id,
+    {
+      $set:
+      {
+        isResolved: true,
+        completed: true,
+        dateResolved: new Date()
+      }
+    }, function (err, job) {
+      if (err) return res.status(500).send('There was a problem updating the document.');
+      res.status(200).send(job);
+    });
+});
+
 // GET ALL JOBS
 router.get('/', VerifyToken, function (req, res, next) {
   crud.getAll({
