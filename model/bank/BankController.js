@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Bank = require('./Bank');
+const crud = require('../composition/crud');
 const VerifyToken = require('../../auth/VerifyToken');
 
 const bodyParser = require('body-parser');
@@ -8,38 +9,53 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 // GET ALL BANKS
 router.get('/', VerifyToken, function (req, res, next) {
-  Bank.find({}, function (err, banks) {
-    if (err) res.status(500).send('There was a problem');
-    else res.status(200).send(banks);
+  crud.getAll({
+    model: Bank,
+    res: res
   });
 });
 
 // GET A SINGLE BANK
 router.get('/:id', VerifyToken, function (req, res, next) {
-  Bank.getById(req.params.id, function (err, bank) {
-    if (err) res.status(500).send('There was a problem');
-    else res.status(200).send(bank);
+  crud.getOne({
+    model: Bank,
+    req: req,
+    res: res
   });
 });
 
 // CREATE A BANK
+/*
+{
+  title: req.body.title,
+  member: req.body.member,
+  severity: req.body.severity,
+  description: req.body.description
+}
+*/
 router.post('/', VerifyToken, function (req, res, next) {
-  Bank.create({
-    title: req.body.title,
-    member: req.body.member,
-    severity: req.body.severity,
-    description: req.body.description
-  }, function (err, bank) {
-    if (err) res.status(500).send('There was a problem');
-    else res.status(200).send(bank);
+  crud.create({
+    model: Bank,
+    req: req,
+    res: res
   });
 });
 
 // DELETES A BANK
 router.delete('/:id', VerifyToken, function (req, res) {
-  Bank.findByIdAndRemove(req.params.id, function (err, bank) {
-    if (err) return res.status(500).send('There was a problem deleting the user.');
-    res.status(200).send(bank);
+  crud.delete({
+    model: Bank,
+    req: req,
+    res: res
+  });
+});
+
+// UPDATES A BANK
+router.put('/:id', VerifyToken, function (req, res) {
+  crud.put({
+    model: Bank,
+    req: req,
+    res: res
   });
 });
 
