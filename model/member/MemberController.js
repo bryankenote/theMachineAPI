@@ -23,7 +23,7 @@ router.get('/:id', VerifyToken, function (req, res, next) {
 });
 
 // CREATES A NEW MEMBER
-router.post('/create', VerifyToken, function (req, res, next) {
+router.post('/', VerifyToken, function (req, res, next) {
   if (req.body.fName === '' || req.body.lName === '' || req.body.email === '') {
     return res.status(500).send('fName, lName, and email are required');
   }
