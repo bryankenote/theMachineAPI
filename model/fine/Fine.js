@@ -11,10 +11,12 @@ var fineSchema = new mongoose.Schema({
     ref: 'Member',
     required: true
   },
+  /*
   memberName: {
     type: String,
     required: true
   },
+  */
   dateCreated: {
     type: Date,
     default: Date.now
@@ -26,7 +28,7 @@ var fineSchema = new mongoose.Schema({
   },
   */
   amount: {
-    type: Number ,
+    type: Number,
     required: true
   }
 });

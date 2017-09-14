@@ -11,10 +11,12 @@ var jobSchema = new mongoose.Schema({
     ref: 'Member',
     required: true
   },
+  /*
   memberName: {
     type: String,
     required: true
   },
+  */
   jobName: {
     type: String,
     required: true

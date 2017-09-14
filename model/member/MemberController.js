@@ -24,26 +24,22 @@ router.get('/:id', VerifyToken, function (req, res, next) {
 
 // CREATES A NEW MEMBER
 router.post('/', VerifyToken, function (req, res, next) {
-  if (req.body.fName === '' || req.body.lName === '' || req.body.email === '') {
-    return res.status(500).send('fName, lName, and email are required');
-  }
-
-  var newMember = new Member({
+  Member.create({
     fName: req.body.fName,
     lName: req.body.lName,
     email: req.body.email
-  });
-  Member.save(newMember, function (err, member) {
-    if (err) return res.status(500).send('There was a problem saving the member.');
-    else res.status(200).send(member);
-  });
+  },
+    function (err, member) {
+      if (err) return res.status(500).send('There was a problem adding the information to the database.');
+      res.status(200).send(member);
+    });
 });
 
-// UPDATES A SINGLE USER
+// UPDATES A SINGLE MEMBER
 router.put('/:id', VerifyToken, function (req, res) {
-  Member.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, user) {
+  Member.findByIdAndUpdate(req.params.id, req.body, { new: true }, function (err, member) {
     if (err) return res.status(500).send('There was a problem updating the Member.');
-    else res.status(200).send(user);
+    else res.status(200).send(member);
   });
 });
 

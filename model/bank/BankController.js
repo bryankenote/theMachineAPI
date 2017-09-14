@@ -35,6 +35,14 @@ router.post('/', VerifyToken, function (req, res, next) {
   });
 });
 
+// DELETES A BANK
+router.delete('/:id', VerifyToken, function (req, res) {
+  Bank.findByIdAndRemove(req.params.id, function (err, bank) {
+    if (err) return res.status(500).send('There was a problem deleting the user.');
+    res.status(200).send(bank);
+  });
+});
+
 // RESOLVE BANK WITHOUT ISSUING A JOB OR FINE
 router.post('/forgive/:id', VerifyToken, function (req, res, next) {
   Bank.findByIdAndUpdate(req.params.id, {
