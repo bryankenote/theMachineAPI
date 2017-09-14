@@ -11,7 +11,6 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 router.post('/register', function (req, res) {
-
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
   User.create({
