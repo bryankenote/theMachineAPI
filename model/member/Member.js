@@ -14,6 +14,7 @@ var memberSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  /*
   banksResolved: {
     type: Number,
     default: 0,
@@ -24,6 +25,7 @@ var memberSchema = new mongoose.Schema({
     default: 0,
     min: 0
   },
+  */
   finesPaid: {
     type: Number,
     default: 0,
