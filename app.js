@@ -17,8 +17,11 @@ app.use('/api/members', MemberController);
 const BankController = require('./model/bank/BankController');
 app.use('/api/banks', BankController);
 
-const JobController = require('./model/job/JobController');
-app.use('/api/jobs', JobController);
+const BankJobController = require('./model/bankJob/BankJobController');
+app.use('/api/bank-jobs', BankJobController);
+
+const WorkJobController = require('./model/workJob/WorkJobController');
+app.use('/api/work-jobs', WorkJobController);
 
 const FineController = require('./model/fine/FineController');
 app.use('/api/fines', FineController);
