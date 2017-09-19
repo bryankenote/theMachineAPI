@@ -52,6 +52,15 @@ router.get('/:id', VerifyToken, function (req, res, next) {
   });
 });
 
+// GET ALL JOBS FOR A SINGLE MEMBER
+router.get('/for/:id', VerifyToken, function (req, res, next) {
+  crud.find({
+    model: Job,
+    query: { member: req.params.id },
+    res: res
+  });
+});
+
 // CREATE A JOB
 /*
 {

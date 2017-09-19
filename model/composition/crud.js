@@ -24,6 +24,15 @@ exports.getOne = (state) => {
   });
 };
 
+// RETURNS ALL DOCUMENTS THAT MATCH THE QUERY
+exports.find = (state) => {
+  state.model.find(state.query, function (err, doc) {
+    if (err) return state.res.status(500).send('There was a problem finding the document.');
+    if (!doc) return state.res.status(404).send('Document not found.');
+    state.res.status(200).send(doc);
+  });
+};
+
 // DELETES A DOCUMENT
 exports.delete = (state) => {
   state.model.findByIdAndRemove(state.req.params.id, function (err, doc) {
