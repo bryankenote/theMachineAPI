@@ -67,7 +67,8 @@ router.get('/find/:id', VerifyToken, function (req, res, next) {
   member: req.body.member,
   jobName: req.body.jobName,
   description: req.body.description,
-  uue: req.body.due
+  tasks: req.body.tasks,
+  due: req.body.due
 }
 */
 router.post('/', VerifyToken, function (req, res, next) {
