@@ -21,8 +21,12 @@ var workJobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  due: {
-    type: Date,
+  time: {
+    type: String,
+    required: true
+  },
+  days: {
+    type: Array,
     required: true
   }
 });

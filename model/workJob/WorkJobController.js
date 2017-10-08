@@ -68,7 +68,8 @@ router.get('/find/:id', VerifyToken, function (req, res, next) {
   jobName: req.body.jobName,
   description: req.body.description,
   tasks: req.body.tasks,
-  due: req.body.due
+  time: req.body.time
+  days: req.body.days
 }
 */
 router.post('/', VerifyToken, function (req, res, next) {

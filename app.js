@@ -1,9 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 require('./model/db');
 
+app.use(bodyParser.json()); // <--- Here
+app.use(bodyParser.urlencoded({extended: true}));
+
 const cors = require('cors');
+// app.use(cors({exposedHeaders: true}));
 app.use(cors());
+app.options('*', cors());
 
 const AuthController = require('./auth/AuthController');
 app.use('/api/auth', AuthController);
