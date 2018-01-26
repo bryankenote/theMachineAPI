@@ -14,6 +14,14 @@ var memberSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  rouletteCompleted: {
+    type: Number,
+    default: 0
+  },
+  rouletteSkipped: {
+    type: Number,
+    default: 0
+  },
   /*
   banksResolved: {
     type: Number,
