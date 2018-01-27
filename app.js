@@ -20,6 +20,9 @@ app.use('/api/users', UserController);
 const MemberController = require('./model/member/MemberController');
 app.use('/api/members', MemberController);
 
+const RouletteController = require('./model/roulette/RouletteController');
+app.use('/api/roulette', RouletteController);
+
 const BankController = require('./model/bank/BankController');
 app.use('/api/banks', BankController);
 
