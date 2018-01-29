@@ -7,7 +7,7 @@ const VerifyToken = require('../../auth/VerifyToken');
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
-// GET ALL GROUPS
+// GET ALL ROULETTES
 router.get('/', VerifyToken, function (req, res, next) {
   crud.getAll({
     model: Roulette,
@@ -15,7 +15,7 @@ router.get('/', VerifyToken, function (req, res, next) {
   });
 });
 
-// GET A SINGLE GROUP
+// GET A SINGLE ROULETTE RESULT
 router.get('/:id', VerifyToken, function (req, res, next) {
   crud.getOne({
     model: Roulette,
@@ -40,6 +40,26 @@ router.get('/find/:id', VerifyToken, function (req, res, next) {
   member2: req.body.member,
   member3: req.body.member, // OPTIONAL
 }
+*/
+/*
+router.post('/', VerifyToken, function (req, res, next) {
+  crud.create({
+    model: Roulette,
+    req: req,
+    res: res
+  });
+});
+*/
+
+// CREATE A SET OF GROUPS
+/*
+[
+  {
+    member1: req.body.member,
+    member2: req.body.member,
+    member3: req.body.member, // OPTIONAL
+  }, ...
+]
 */
 router.post('/', VerifyToken, function (req, res, next) {
   crud.create({
