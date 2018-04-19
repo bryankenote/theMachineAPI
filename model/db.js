@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var dbUrl = process.env.MONGOURI || 'mongodb://localhost/bankapp_2';
+const dbUrl = process.env.MONGOURI || 'mongodb://localhost/bankapp';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl, { useMongoClient: true }, function (err) {

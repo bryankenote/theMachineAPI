@@ -1,4 +1,3 @@
 module.exports = {
-  // secret: process.env.DB_PW
-  secret: 'supersecret'
-}
+  secret: process.env.DB_SECRET
+};
